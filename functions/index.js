@@ -1,16 +1,17 @@
 const express = require('express');
-const serverless = require('serverless-http')
+const nodemailer = require('nodemailer');
 const app = express();
+const otpgenerator = require('otp-generator')
 const apidata = require('../data.json')
-const router = express.Router()
 
-router.get('/services', (req,res)=>{
+app.get('/services', (req,res)=>{
     res.send(apidata)
 })
 
-router.get('/',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send('hello')
 })
 
-app.use('/functions/index', router)
-module.exports.handler = serverless(app)
+app.listen(3000, ()=>{
+    console.log('listening')
+})
